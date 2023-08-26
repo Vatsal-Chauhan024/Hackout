@@ -2,14 +2,13 @@ import React, { useState } from "react";
 import { BsFillPersonFill } from "react-icons/bs";
 import { AiFillLock, AiTwotoneMobile, AiTwotoneMail } from "react-icons/ai";
 import { Link } from "react-router-dom";
-import axios from "axios";
 import api from "../api/api";
 
 const Login = () => {
   const [Full_Name, setFull_Name] = useState("");
   const [PassWord, setPassWord] = useState("");
   const [Email_Id, setEmail_Id] = useState("");
-  const [Phone_no, setPhone_no] = useState("");
+  const [Phone_No, setPhone_No] = useState("");
 
   const handleName = e => {
     setFull_Name(e.target.value);
@@ -19,7 +18,7 @@ const Login = () => {
   };
 
   const handleNumber = e => {
-    setPhone_no(e.target.value.replace(/[^0-9]/g, "").slice(0, 10));
+    setPhone_No(e.target.value.replace(/[^0-9]/g, "").slice(0, 10));
   };
 
   const handlePassword = e => {
@@ -29,8 +28,8 @@ const Login = () => {
   const handleSubmit = e => {
     e.preventDefault();
     api
-      .post("/register", {
-        Phone_no: Phone_no,
+      .post("/register/", {
+        Phone_No: Phone_No,
         Email_Id: Email_Id,
         Full_Name: Full_Name,
         PassWord: PassWord,
@@ -38,7 +37,7 @@ const Login = () => {
       .then(response => {
         setEmail_Id("");
         setFull_Name("");
-        setPhone_no("");
+        setPhone_No("");
         setPassWord("");
         console.log(response);
       })
@@ -86,7 +85,7 @@ const Login = () => {
               </div>
               <input
                 type="text"
-                value={Phone_no}
+                value={Phone_No}
                 onChange={handleNumber}
                 placeholder="Mobile Number"
                 className="border-r-2 border-t-2 border-b-2 border-gray-300 rounded-r-sm w-56 outline-green-400 px-2 text-sm"

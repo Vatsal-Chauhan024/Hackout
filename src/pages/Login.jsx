@@ -1,56 +1,74 @@
+
 import React, { useState } from "react";
 import { BsFillPersonFill } from "react-icons/bs";
 import { AiFillLock } from "react-icons/ai";
-import { Link } from "react-router-dom";
-import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 import api from "../api/api";
+
 const Login = () => {
-  const handleSubmit = e => {
+  const navigate = useNavigate(); // Initialize the navigate function
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    api.post("/login",{Email_Id: Email_Id,Password: Password})
-      .then(response => {
-        setEmail_Id("");
-        setPassword("");
-        console.log(response);
-        toast.error("jh", {
-          position: "top-center",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-        });
-      })
-      .catch(err => {
-        toast.error(err, {
-          position: "top-center",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-        });
+
+    try {
+      const response = await api.post("/login", {
+        Email_Id: Email_Id,
+        Password: Password,
       });
+
+      // Assuming the server sends back a success message and doesn't return a token
+      console.log("Login successful:", response.data.message);
+
+      // Create a JWT token based on the combination of email and password
+      const token = btoa(`${Email_Id}:${Password}`);
+      console.log(token,Email_Id);
+      // Store the token in localStorage or a more secure storage option
+      localStorage.setItem("token", token);
+      localStorage.setItem("email", Email_Id);
+
+      toast.success("Login successful!", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+
+      navigate("/");
+  
+    } catch (error) {
+      toast.error("Login failed. Please check your credentials.", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    }
   };
 
   const [Email_Id, setEmail_Id] = useState("");
   const [Password, setPassword] = useState("");
 
-  const handleEmail = e => {
+  const handleEmail = (e) => {
     setEmail_Id(e.target.value);
   };
 
-  const handlePassword = e => {
+  const handlePassword = (e) => {
     setPassword(e.target.value);
   };
+
   return (
     <>
-      <ToastContainer />
+      <ToastContainer style={{width:200}}/>
       <div className="min-w-screen min-h-screen flex justify-center items-center">
         <div className="mainCard w-96 bg-white h-3/4 overflow-hidden rounded-sm shadow-2xl mx-2 pb-3">
           <div className="greenCard bg-green-600 text-white h-28 flex items-center justify-center">
@@ -77,11 +95,11 @@ const Login = () => {
                   <AiFillLock className="text-white" />
                 </div>
                 <input
-                  type="text"
+                  type="password"
                   value={Password}
                   onChange={handlePassword}
                   placeholder="Password"
-                  className="border-r-2 border-t-2 border-b-2 border-gray-300 rounded-r-sm w-56 outline-green-400 px-2  text-sm"
+                  className="border-r-2 border-t-2 border-b-2 border-gray-300 rounded-r-sm w-56 outline-green-400 px-2 text-sm"
                 />
               </div>
             </div>
