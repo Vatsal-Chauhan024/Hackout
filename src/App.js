@@ -22,7 +22,6 @@ function App() {
               <Route path='/bookappointment' element = {<BookAppointment/>}/>
               <Route path='/records' element = {<Records/>}/>
               <Route path='/contactus' element = {<Contactus/>}/>
-
             </Routes>
           </BrowserRouter>
     </div>

@@ -12,8 +12,8 @@ const ContentCard = () => {
         <hr className='h-[2px] bg-white w-8'/>
         <div className="lists mt-2">
             <ul className='text-gray-400 text-sm flex flex-col gap-1'>
-                <Link to= "/"><li className='cursor-pointer'>Home</li></Link>
-                <Link to = "/pages/Contactus"><li className='cursor-pointer'>Contact Us</li></Link>
+                <Link to= "/home"><li className='cursor-pointer'>Home</li></Link>
+                <Link to = "/contactus"><li className='cursor-pointer'>Contact Us</li></Link>
             </ul>
         </div>
       </div>
@@ -23,10 +23,9 @@ const ContentCard = () => {
         <hr className='h-[2px] bg-white w-8'/>
         <div className="lists mt-2">
             <ul className='text-gray-400 text-sm flex flex-col gap-1'>
-                <Link to = "/pages/BookAppointment"><li className='cursor-pointer'>Appointment</li></Link>
-                <Link to = "/pages/Records"><li className='cursor-pointer'>User Details</li></Link>
-                <Link to = "/pages/Hospital"><li className='cursor-pointer'>Hospitals</li></Link>
-                <Link to = "/pages/Medicine"><li className='cursor-pointer'>Medicine</li></Link>
+                <Link to = "/bookappointment"><li className='cursor-pointer'>Appointment</li></Link>
+                <Link to = "/records"><li className='cursor-pointer'>User Details</li></Link>
+                <Link to = "/hospital"><li className='cursor-pointer'>Hospitals</li></Link>
             </ul>
         </div>
       </div>
@@ -39,9 +38,9 @@ const ContentCard = () => {
         <hr className='h-[2px] bg-white w-8'/>
         <div className="lists mt-2">
             <ul className='text-gray-400 text-sm flex flex-col gap-1'>
-                <Link to = "./pages/Dashboard"><li className='cursor-pointer'>Profile</li></Link>
-                <Link to = "./pages/Account"><li className='cursor-pointer'>My account</li></Link>
-                <Link to = "./pages/Hospital"><li className='cursor-pointer'>Hospital</li></Link>
+                <Link to = "./records"><li className='cursor-pointer'>Profile</li></Link>
+                <Link to = "./bookappointment"><li className='cursor-pointer'>My account</li></Link>
+                <Link to = "./hospital"><li className='cursor-pointer'>Hospital</li></Link>
             </ul>
         </div>
       </div>

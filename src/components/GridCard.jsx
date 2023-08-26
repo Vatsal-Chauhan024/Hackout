@@ -12,25 +12,25 @@ const fakeData = [
         title: "Book Appointment",
         description: "Book a new Appointment",
         button: "Book Appointment",
-        Link : '../pages/BookAppointment',
+        Link : '/bookappointment',
     },
     {
         title: "Current Appointments",
         description: "Review your Appointments",
         button: "Current Appointment",
-        Link: '../pages/CurrentAppointment'
+        Link: '/currentappointment'
     },
     {
         title: "Records",
         description: "Check your Past Records",
         button: "Records",
-        Link: '../pages/Records'
+        Link: '/records'
     },
     {
         title: "Contact Us",
         description: "May I Help you ?",
         button: "Contact Us",
-        Link: '../pages/ContactUs'
+        Link: '/contactus'
     }
 ]
 

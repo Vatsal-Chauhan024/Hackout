@@ -10,7 +10,7 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate()
-
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -30,7 +30,14 @@ const Login = () => {
         closeOnClick: true,
         theme: "light",
       });
-      navigate('/home')
+
+      const token = btoa(`${email}:${password}`);
+
+
+      sessionStorage.setItem("token",token);
+      sessionStorage.setItem("Email_Id",email);
+      
+      navigate('/home');
 
     
     } catch (error) {

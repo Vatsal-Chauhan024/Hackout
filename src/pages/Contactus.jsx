@@ -2,8 +2,10 @@ import React from 'react'
 import LeftSideContainer from '../components/ContactForm/LeftSideContainer'
 import CenterDiv from '../components/ContactForm/CenterDiv'
 import RightSideContainer from '../components/ContactForm/RightSideContainer'
+import useAuth from '../helper/useAuth'
 
 const ContactUs = () => {
+  useAuth();
   return (
     <>
     <div className="main w-screen h-screen flex justify-center items-center flex-col">
