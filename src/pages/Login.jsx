@@ -1,53 +1,57 @@
 import React, { useState } from "react";
 import { BsFillPersonFill } from "react-icons/bs";
 import { AiFillLock } from "react-icons/ai";
-import { Link } from "react-router-dom";
-import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css"; // Make sure to import the CSS
 import api from "../api/api";
+
 const Login = () => {
-  const handleSubmit = e => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate()
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    api.post("/login",{Email_Id: Email_Id,Password: Password})
-      .then(response => {
-        setEmail_Id("");
-        setPassword("");
-        console.log(response);
-        toast.error("jh", {
-          position: "top-center",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-        });
-      })
-      .catch(err => {
-        toast.error(err, {
-          position: "top-center",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-        });
+
+    try {
+      const response = await api.post("/login", {
+        Email_Id: email,
+        Password: password,
       });
+
+      setEmail("");
+      setPassword("");
+      
+      toast.success(response.data.message, {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        theme: "light",
+      });
+      navigate('/home')
+
+    
+    } catch (error) {
+      toast.error(error.response.data.message, {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        theme: "light",
+      });
+    }
   };
 
-  const [Email_Id, setEmail_Id] = useState("");
-  const [Password, setPassword] = useState("");
-
-  const handleEmail = e => {
-    setEmail_Id(e.target.value);
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
   };
 
-  const handlePassword = e => {
+  const handlePasswordChange = (e) => {
     setPassword(e.target.value);
   };
+
   return (
     <>
       <ToastContainer />
@@ -57,7 +61,7 @@ const Login = () => {
             <h1 className="text-2xl font-medium">Login</h1>
           </div>
 
-          <form action="" onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit}>
             <div className="inputFields flex flex-col gap-4 h-fit mt-16 items-center ">
               <div className="fields flex">
                 <div className="greenDiv h-9 w-9 bg-green-400 flex items-center justify-center rounded-l-md">
@@ -65,8 +69,8 @@ const Login = () => {
                 </div>
                 <input
                   type="text"
-                  value={Email_Id}
-                  onChange={handleEmail}
+                  value={email}
+                  onChange={handleEmailChange}
                   placeholder="Email"
                   className="border-r-2 border-t-2 border-b-2 border-gray-300 rounded-r-sm w-56 outline-green-400 px-2 text-sm"
                 />
@@ -77,23 +81,22 @@ const Login = () => {
                   <AiFillLock className="text-white" />
                 </div>
                 <input
-                  type="text"
-                  value={Password}
-                  onChange={handlePassword}
+                  type="password"
+                  value={password}
+                  onChange={handlePasswordChange}
                   placeholder="Password"
-                  className="border-r-2 border-t-2 border-b-2 border-gray-300 rounded-r-sm w-56 outline-green-400 px-2  text-sm"
+                  className="border-r-2 border-t-2 border-b-2 border-gray-300 rounded-r-sm w-56 outline-green-400 px-2 text-sm"
                 />
               </div>
             </div>
             <div className="forget ml-16 mt-2 cursor-pointer">
-              <span className="forgetPass text-green-500 font-medium tracking-wide  hover:text-green-300">
-                {" "}
+              <span className="forgetPass text-green-500 font-medium tracking-wide hover:text-green-300">
                 Forget Password?
               </span>
             </div>
 
             <div className="loginButton flex justify-center mt-5 px-14">
-              <button className="h-8 bg-green-500 text-white hover:bg-green-400  rounded-sm outline-none w-full px-10">
+              <button className="h-8 bg-green-500 text-white hover:bg-green-400 rounded-sm outline-none w-full px-10">
                 Login
               </button>
             </div>

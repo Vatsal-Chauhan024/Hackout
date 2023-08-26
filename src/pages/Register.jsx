@@ -1,15 +1,17 @@
 import React, { useState } from "react";
 import { BsFillPersonFill } from "react-icons/bs";
 import { AiFillLock, AiTwotoneMobile, AiTwotoneMail } from "react-icons/ai";
-import { Link } from "react-router-dom";
-import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
 import api from "../api/api";
+import { ToastContainer, toast } from "react-toastify";
 
-const Login = () => {
+
+const Register = () => {
   const [Full_Name, setFull_Name] = useState("");
-  const [PassWord, setPassWord] = useState("");
+  const [password, setPassword] = useState("");
   const [Email_Id, setEmail_Id] = useState("");
-  const [Phone_no, setPhone_no] = useState("");
+  const [Phone_No, setPhone_No] = useState("");
+  const navigate = useNavigate();
 
   const handleName = e => {
     setFull_Name(e.target.value);
@@ -19,35 +21,52 @@ const Login = () => {
   };
 
   const handleNumber = e => {
-    setPhone_no(e.target.value.replace(/[^0-9]/g, "").slice(0, 10));
+    setPhone_No(e.target.value.replace(/[^0-9]/g, "").slice(0, 10));
   };
 
   const handlePassword = e => {
-    setPassWord(e.target.value);
+    setPassword(e.target.value);
   };
 
-  const handleSubmit = e => {
+  const handleSubmit =  async (e) => {
     e.preventDefault();
-    api
-      .post("/register", {
-        Phone_no: Phone_no,
+
+    try {
+      const response = await api.post("/register/", {
+        Phone_No: Phone_No,
         Email_Id: Email_Id,
         Full_Name: Full_Name,
-        PassWord: PassWord,
-      })
-      .then(response => {
-        setEmail_Id("");
-        setFull_Name("");
-        setPhone_no("");
-        setPassWord("");
-        console.log(response);
-      })
-      .catch(err => {
-        console.error(err);
+        Password: password,
       });
+
+      setEmail_Id("");
+      setPassword("");
+      setFull_Name('')
+      setPhone_No('')
+      
+      toast.success(response.data.message, {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        theme: "light",
+      });
+      navigate('/home')
+      
+    } catch (error) {
+      toast.error(error.response.data.message, {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        theme: "light",
+      });
+    }
   };
 
   return (
+    <>
+    <ToastContainer/>
     <div className="min-w-screen min-h-screen flex justify-center items-center">
       <div className="mainCard w-96 bg-white h-3/4 overflow-hidden rounded-sm shadow-2xl mx-2 pb-3">
         <div className="greenCard bg-green-600 text-white h-28 flex items-center justify-center">
@@ -86,7 +105,7 @@ const Login = () => {
               </div>
               <input
                 type="text"
-                value={Phone_no}
+                value={Phone_No}
                 onChange={handleNumber}
                 placeholder="Mobile Number"
                 className="border-r-2 border-t-2 border-b-2 border-gray-300 rounded-r-sm w-56 outline-green-400 px-2 text-sm"
@@ -98,8 +117,8 @@ const Login = () => {
                 <AiFillLock className="text-white" />
               </div>
               <input
-                type="text"
-                value={PassWord}
+                type="password"
+                value={password}
                 onChange={handlePassword}
                 placeholder="Password"
                 className="border-r-2 border-t-2 border-b-2 border-gray-300 rounded-r-sm w-56 outline-green-400 px-2  text-sm"
@@ -122,7 +141,8 @@ const Login = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 
-export default Login;
+export default Register;
