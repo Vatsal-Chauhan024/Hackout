@@ -25,9 +25,11 @@ const Login = () => {
       const token = btoa(`${Email_Id}:${Password}`);
       console.log(token,Email_Id);
       // Store the token in localStorage or a more secure storage option
-      localStorage.setItem("token", token);
-      localStorage.setItem("email", Email_Id);
-
+    //   localStorage.setItem("token", token);
+    //   localStorage.setItem("email", Email_Id);
+    sessionStorage.setItem("token", token);
+    sessionStorage.setItem("email", Email_Id);
+    
       toast.success("Login successful!", {
         position: "top-center",
         autoClose: 5000,

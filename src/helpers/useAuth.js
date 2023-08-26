@@ -5,8 +5,8 @@ const useAuth = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Check if the JWT token exists in localStorage
-    const token = localStorage.getItem("token");
+    // Check if the JWT token exists in sessionStorage
+    const token = sessionStorage.getItem("token");
 
     if (!token) {
       // If the token doesn't exist, redirect the user to the login page
