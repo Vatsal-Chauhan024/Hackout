@@ -39,7 +39,7 @@ const Login = () => {
         theme: "dark",
       });
 
-      navigate("/");
+      navigate("/home");
   
     } catch (error) {
       toast.error("Login failed. Please check your credentials.", {

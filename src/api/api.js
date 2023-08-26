@@ -1,5 +1,3 @@
-// api.js
-
 import axios from 'axios';
 
 // Create an instance of Axios with default configurations

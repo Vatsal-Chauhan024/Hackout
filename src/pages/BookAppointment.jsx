@@ -46,7 +46,6 @@ const BookAppointment = () => {
 
     const [HospitalName, setHospitalName] = useState('')
     const [DoctorName, setDoctorName] = useState('')
-    const [Email_Id, setEmail_Id] = useState('')
     const [Date, setDate] = useState('')
     const [Date2, setDate2]  = useState('')
 
@@ -59,9 +58,6 @@ const BookAppointment = () => {
   }
 
 
-    const handleEmail = (e) =>{
-        setEmail_Id(e.target.value);
-    }
 
    const handleDate = (e) =>{
         setDate(e.target.value);
@@ -111,18 +107,6 @@ const BookAppointment = () => {
           </div>
 
 
-          <div className="fields flex">
-            <div className="greenDiv h-9 w-9 bg-green-400 flex items-center justify-center rounded-l-md">
-              <AiTwotoneMail className="text-white"/>
-            </div>
-            <input
-              type="text"
-              value={Email_Id}
-              onChange={handleEmail}
-              placeholder='Email'
-              className="border-r-2 border-t-2 border-b-2 border-gray-300 rounded-r-sm w-56 outline-green-400 px-2 text-sm"
-            />
-          </div>
 
           <div className="fields flex">
             <div className="greenDiv h-9 w-9 bg-green-400 flex items-center justify-center rounded-l-md">
