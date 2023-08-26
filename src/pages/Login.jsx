@@ -1,10 +1,9 @@
-
 import React, { useState } from "react";
 import { BsFillPersonFill } from "react-icons/bs";
 import { AiFillLock } from "react-icons/ai";
 import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css"; // Make sure to import the CSS
 import api from "../api/api";
 
 const Login = () => {
@@ -17,31 +16,19 @@ const Login = () => {
 
     try {
       const response = await api.post("/login", {
-        Email_Id: Email_Id,
-        Password: Password,
+        Email_Id: email,
+        Password: password,
       });
 
-      // Assuming the server sends back a success message and doesn't return a token
-      console.log("Login successful:", response.data.message);
-
-      // Create a JWT token based on the combination of email and password
-      const token = btoa(`${Email_Id}:${Password}`);
-      console.log(token,Email_Id);
-      // Store the token in localStorage or a more secure storage option
-    //   localStorage.setItem("token", token);
-    //   localStorage.setItem("email", Email_Id);
-    sessionStorage.setItem("token", token);
-    sessionStorage.setItem("email", Email_Id);
-    
-      toast.success("Login successful!", {
+      setEmail("");
+      setPassword("");
+      
+      toast.success(response.data.message, {
         position: "top-center",
-        autoClose: 5000,
+        autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "dark",
+        theme: "light",
       });
 
       const token = btoa(`${email}:${password}`);
@@ -52,43 +39,36 @@ const Login = () => {
       
       navigate('/home');
 
-      navigate("/home");
-  
+    
     } catch (error) {
-      toast.error("Login failed. Please check your credentials.", {
+      toast.error(error.response.data.message, {
         position: "top-center",
-        autoClose: 5000,
+        autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
         theme: "light",
       });
     }
   };
 
-  const [Email_Id, setEmail_Id] = useState("");
-  const [Password, setPassword] = useState("");
-
-  const handleEmail = (e) => {
-    setEmail_Id(e.target.value);
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
   };
 
-  const handlePassword = (e) => {
+  const handlePasswordChange = (e) => {
     setPassword(e.target.value);
   };
 
   return (
     <>
-      <ToastContainer style={{width:200}}/>
+      <ToastContainer />
       <div className="min-w-screen min-h-screen flex justify-center items-center">
         <div className="mainCard w-96 bg-white h-3/4 overflow-hidden rounded-sm shadow-2xl mx-2 pb-3">
           <div className="greenCard bg-green-600 text-white h-28 flex items-center justify-center">
             <h1 className="text-2xl font-medium">Login</h1>
           </div>
 
-          <form action="" onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit}>
             <div className="inputFields flex flex-col gap-4 h-fit mt-16 items-center ">
               <div className="fields flex">
                 <div className="greenDiv h-9 w-9 bg-green-400 flex items-center justify-center rounded-l-md">
@@ -96,8 +76,8 @@ const Login = () => {
                 </div>
                 <input
                   type="text"
-                  value={Email_Id}
-                  onChange={handleEmail}
+                  value={email}
+                  onChange={handleEmailChange}
                   placeholder="Email"
                   className="border-r-2 border-t-2 border-b-2 border-gray-300 rounded-r-sm w-56 outline-green-400 px-2 text-sm"
                 />
@@ -109,22 +89,21 @@ const Login = () => {
                 </div>
                 <input
                   type="password"
-                  value={Password}
-                  onChange={handlePassword}
+                  value={password}
+                  onChange={handlePasswordChange}
                   placeholder="Password"
                   className="border-r-2 border-t-2 border-b-2 border-gray-300 rounded-r-sm w-56 outline-green-400 px-2 text-sm"
                 />
               </div>
             </div>
             <div className="forget ml-16 mt-2 cursor-pointer">
-              <span className="forgetPass text-green-500 font-medium tracking-wide  hover:text-green-300">
-                {" "}
+              <span className="forgetPass text-green-500 font-medium tracking-wide hover:text-green-300">
                 Forget Password?
               </span>
             </div>
 
             <div className="loginButton flex justify-center mt-5 px-14">
-              <button className="h-8 bg-green-500 text-white hover:bg-green-400  rounded-sm outline-none w-full px-10">
+              <button className="h-8 bg-green-500 text-white hover:bg-green-400 rounded-sm outline-none w-full px-10">
                 Login
               </button>
             </div>
