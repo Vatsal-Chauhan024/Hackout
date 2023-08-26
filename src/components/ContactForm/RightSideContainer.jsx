@@ -39,14 +39,14 @@ const RightSideContainer = () => {
     <>
       <ToastContainer />
       <form onSubmit={handleSumbit}>
-        <div className='main h-full r mt-8  pl-6 lg:pl-0'>
+        <div className='main h-full r mt-8  pl-6 lg:pl-0 w-full'>
           <h1 className='signupHeading text-purple-500 text-2xl font-semibold'>
             Send me a message
           </h1>
           <p className='font-thin text-gray-500 text-justify text-sm w-5/6'>Send me a message and let's start a conversation about our shared interests and ideas.</p>
 
 
-          <div className="inputFields mt-3 flex flex-col  w-5/6  ">
+          <div className="inputFields mt-3 flex flex-col  w-full  ">
             <input type="text" placeholder='Your Name' value={name} onChange={(e) => setName(e.target.value)} className='bg-purple-100 text-black px-2 rounded-md h-11 outline-none text-sm lg:text-base w-full' />
 
 
