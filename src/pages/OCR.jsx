@@ -17,22 +17,30 @@ const handleFileChange = (event) => {
     const file = event.target.files[0];
     setSelectedFile(file);
   
-    const formData = new FormData();
-    formData.append('file', file);
+    const reader = new FileReader();
+    
+    reader.onload = (event) => {
+      const base64Data = event.target.result.split(',')[1]; // Get the base64 data part
+        console.log(base64Data);
+      const formData = new FormData();
+      formData.append('file', base64Data); // Append the base64 data to the FormData
+        
+      api.post('digitalize_record/', formData)
+        .then(response => {
+          setExtractedContent(response.data);
+          setAccuracy(response.data.accuracy);
+        })
+        .catch(error => {
+          toast.error('Error uploading file');
+        })
+        .finally(() => {
+          setIsLoading(false);
+        });
+    };
   
-    api.post('digitalize_record/', formData)
-      .then(response => {
-        setExtractedContent(response.data);
-        setAccuracy(response.data.accuracy);
-      })
-      .catch(error => {
-        toast.error('Error uploading file');
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
+    reader.readAsDataURL(file); // Read and encode the file as base64
   };
-  
+    
   const handleDrop = (event) => {
     event.preventDefault();
     const file = event.dataTransfer.files[0];
