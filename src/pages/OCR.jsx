@@ -4,6 +4,7 @@ import useAuth from '../helper/useAuth';
 import { ToastContainer, toast } from 'react-toastify';
 
 const OCR = () => {
+    // useAuth();
   const [selectedFile, setSelectedFile] = useState(null);
   const [extractedContent, setExtractedContent] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -141,20 +142,14 @@ const handleFileChange = (event) => {
 
 
 <div className='w-full px-10 mt-12 flex flex-col gap-2'>
-      <h1 className=''>Comparasion & Accuraccy:</h1>              
+      {/* <h1 className=''>Comparasion & Accuraccy:</h1>               */}
 
 <div>
 
   <div
     class="overflow-hidden rounded-lg border border-gray-200 shadow-sm focus-within:border-blue-600 focus-within:ring-1 focus-within:ring-blue-600"
   >
-    <textarea
-      id="OrderNotes"
-      className="w-full resize-none border-none align-top focus:ring-0 sm:text-sm p-2 min-h-[100px] outline-none"
-      rows="4"
-      placeholder="Enter any additional order notes..."
-      
-    ></textarea>
+   
 
     <div class="flex items-center justify-end gap-2 bg-white p-3">
       
@@ -162,12 +157,7 @@ const handleFileChange = (event) => {
     
     </div>
   </div>
-    <button
-        type="button"
-        class="rounded bg-indigo-600 px-3 py-1.5 text-sm font-medium text-white hover:bg-indigo-700 mt-3"
-      >
-        Compare Accuracy
-      </button>
+    
 
       <h4 className='text-sm mt-2'>The Accuracy of the Model is: {accuracy !== null ? accuracy : 'N/A'} </h4>
 </div>

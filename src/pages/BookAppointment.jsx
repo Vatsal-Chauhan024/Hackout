@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 import useAuth from "../helper/useAuth";
 
 const BookAppointment = () => {
-  useAuth();
+  // useAuth();
   const navigate = useNavigate();
    const [HospitalName, setHospitalName] = useState('')
     const [DoctorName, setDoctorName] = useState('')
