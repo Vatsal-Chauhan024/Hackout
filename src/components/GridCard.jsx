@@ -56,14 +56,14 @@ const GridCard = () => {
 
 
     return (
-        <div>
-            <div className="carousel w-7/12 flex items-center justify-center h-full">
+        <div className=''>
+            <div className="carousel w-full flex items-center justify-center h-full">
                 {slides.map((slide, index) => (
                     <div
                         key={index}
-                        className={`carousel-item relative w-full ${index === currentSlide ? 'visible' : 'hidden'}`}
+                        className={`carousel-item relative  ${index === currentSlide ? 'visible' : 'hidden'}`}
                     >
-                        <img src={slide} className="w-full h-96 px-2 rounded-lg" />
+                        <center><img src={slide} className="w-full h-96 px-2 rounded-lg" /></center>
                         <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
                             <button onClick={() => goToSlide((currentSlide - 1 + slides.length) % slides.length)} className="btn btn-circle">❮</button>
                             <button onClick={() => goToSlide((currentSlide + 1) % slides.length)} className="btn btn-circle">❯</button>

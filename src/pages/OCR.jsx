@@ -3,7 +3,6 @@ import api from '../api/api'
 import useAuth from '../helper/useAuth';
 
 const OCR = () => {
-    useAuth();
   const [selectedFile, setSelectedFile] = useState(null);
   const [extractedContent, setExtractedContent] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -28,7 +27,7 @@ const OCR = () => {
     if (selectedFile) {
       setIsLoading(true);
 
-      api.post('YOUR_API_ENDPOINT', selectedFile)
+      api.post('digitalize_record/', selectedFile)
         .then(response => {
           setExtractedContent(response.data);
           setAccuracy(response.data.accuracy);
