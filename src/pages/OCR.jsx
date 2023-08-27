@@ -22,10 +22,10 @@ const handleFileChange = (event) => {
     reader.onload = (event) => {
       const base64Data = event.target.result.split(',')[1]; // Get the base64 data part
         console.log(base64Data);
-      const formData = new FormData();
-      formData.append('file', base64Data); // Append the base64 data to the FormData
+     
+       
         
-      api.post('digitalize_record/', formData)
+      api.post('digitalize_record/', {'base64':base64Data})
         .then(response => {
           setExtractedContent(response.data);
           setAccuracy(response.data.accuracy);
