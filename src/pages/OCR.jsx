@@ -9,11 +9,30 @@ const OCR = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [accuracy, setAccuracy] = useState(null);
 
-  const handleFileChange = (event) => {
+//   const handleFileChange = (event) => {
+//     const file = event.target.files[0];
+//     setSelectedFile(file);
+//   };
+const handleFileChange = (event) => {
     const file = event.target.files[0];
     setSelectedFile(file);
+  
+    const formData = new FormData();
+    formData.append('file', file);
+  
+    api.post('digitalize_record/', formData)
+      .then(response => {
+        setExtractedContent(response.data);
+        setAccuracy(response.data.accuracy);
+      })
+      .catch(error => {
+        toast.error('Error uploading file');
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
   };
-
+  
   const handleDrop = (event) => {
     event.preventDefault();
     const file = event.dataTransfer.files[0];
