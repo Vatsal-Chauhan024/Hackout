@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import api from '../api/api'
+import useAuth from '../helper/useAuth';
 
 const OCR = () => {
+    useAuth();
   const [selectedFile, setSelectedFile] = useState(null);
   const [extractedContent, setExtractedContent] = useState('');
   const [isLoading, setIsLoading] = useState(false);

@@ -25,7 +25,7 @@ const ContentCard = () => {
             <ul className='text-gray-400 text-sm flex flex-col gap-1'>
                 <Link to = "/bookappointment"><li className='cursor-pointer'>Appointment</li></Link>
                 <Link to = "/records"><li className='cursor-pointer'>User Details</li></Link>
-                <Link to = "/hospital"><li className='cursor-pointer'>Hospitals</li></Link>
+                <Link to = "/notifications"><li className='cursor-pointer'>Appointment</li></Link>
             </ul>
         </div>
       </div>
@@ -40,7 +40,7 @@ const ContentCard = () => {
             <ul className='text-gray-400 text-sm flex flex-col gap-1'>
                 <Link to = "./records"><li className='cursor-pointer'>Profile</li></Link>
                 <Link to = "./bookappointment"><li className='cursor-pointer'>My account</li></Link>
-                <Link to = "./hospital"><li className='cursor-pointer'>Hospital</li></Link>
+                <Link to = "./OCR"><li className='cursor-pointer'>OCR</li></Link>
             </ul>
         </div>
       </div>

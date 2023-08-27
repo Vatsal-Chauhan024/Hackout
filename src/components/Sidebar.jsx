@@ -24,13 +24,13 @@ const Sidebar = () => {
 
    <div className="lists mt-10">
        <ul className="listItemul flex flex-col gap-y-16">
-         <span className='flex justify-between px-10 cursor-pointer hover:text-gray-500'> <AiFillHome className='text-2xl '/> <li className="listItem w-16">Home</li></span>
-         <span className='flex justify-between px-10 cursor-pointer  hover:text-gray-500'> <MdShortcut className='text-2xl '/> <li className="listItem w-16">Shorcuts</li></span>
-         <span className='flex justify-between px-10 cursor-pointer  hover:text-gray-500'> <CgHello className='text-2xl '/> <li className="listItem w-16">Overview</li></span>
-         <span className='flex justify-between px-10 cursor-pointer  hover:text-gray-500'> <MdEvent className='text-2xl '/> <li className="listItem w-16">Events</li></span>
-         <span className='flex justify-between px-10 cursor-pointer  hover:text-gray-500'> <FcAbout className='text-2xl '/> <li className="listItem w-16">About</li></span>
-         <span className='flex justify-between px-10 cursor-pointer  hover:text-gray-500'> <MdHomeRepairService className='text-2xl '/> <li className="listItem w-16">Service</li></span>
-         <span className='flex justify-between px-10 cursor-pointer  hover:text-gray-500'> <MdFeedback className='text-2xl '/> <li className="listItem w-16">Feedback</li></span>
+         <span className='flex justify-between px-20 cursor-pointer hover:text-gray-500'> <AiFillHome className='text-2xl '/> <li className="listItem w-16">Home</li></span>
+         <span className='flex justify-between px-20 cursor-pointer  hover:text-gray-500'> <MdShortcut className='text-2xl '/> <li className="listItem w-16">Shorcuts</li></span>
+         <span className='flex justify-between px-20 cursor-pointer  hover:text-gray-500'> <CgHello className='text-2xl '/> <li className="listItem w-16">Overview</li></span>
+         <span className='flex justify-between px-20 cursor-pointer  hover:text-gray-500'> <MdEvent className='text-2xl '/> <li className="listItem w-16">Events</li></span>
+         <span className='flex justify-between px-20 cursor-pointer  hover:text-gray-500'> <FcAbout text-gray-500 className='text-2xl '/> <li className="listItem w-16">About</li></span>
+         <span className='flex justify-between px-20 cursor-pointer  hover:text-gray-500'> <MdHomeRepairService className='text-2xl '/> <li className="listItem w-16">Service</li></span>
+         <span className='flex justify-between px-20 cursor-pointer  hover:text-gray-500'> <MdFeedback className='text-2xl '/> <li className="listItem w-16">Feedback</li></span>
          
 
        </ul>

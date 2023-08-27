@@ -57,7 +57,7 @@ const GridCard = () => {
 
     return (
         <div>
-            <div className="carousel w-full flex h-full">
+            <div className="carousel w-7/12 flex items-center justify-center h-full">
                 {slides.map((slide, index) => (
                     <div
                         key={index}

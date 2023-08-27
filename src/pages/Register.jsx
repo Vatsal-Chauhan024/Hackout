@@ -32,7 +32,7 @@ const Register = () => {
     e.preventDefault();
 
     try {
-      const response = await api.post("/register/", {
+      const response = await api.post("/register", {
         Phone_No: Phone_No,
         Email_Id: Email_Id,
         Full_Name: Full_Name,
@@ -51,7 +51,15 @@ const Register = () => {
         closeOnClick: true,
         theme: "light",
       });
-      navigate('/home')
+     
+      const token = btoa(`${Email_Id}:${password}`);
+
+
+      sessionStorage.setItem("token",token);
+      sessionStorage.setItem("Email_Id",Email_Id);
+      
+      navigate('/home');
+      // navigate('/home')
       
     } catch (error) {
       toast.error(error.response.data.message, {
